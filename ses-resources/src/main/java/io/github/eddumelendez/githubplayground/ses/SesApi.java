@@ -1,5 +1,5 @@
 package io.github.eddumelendez.githubplayground.ses;
 
-class SesApi {
+public class SesApi {
 
 }

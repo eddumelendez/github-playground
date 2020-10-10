@@ -6,7 +6,7 @@
 
 	<groupId>io.github.eddumelendez</groupId>
 	<artifactId>github-playground</artifactId>
-	<version>0.0.1.BUILD-SNAPSHOT</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>GitHub Playground</name>
 	<description>GitHub Playground</description>
@@ -16,9 +16,31 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
+	<scm>
+		<url>https://github.com/eddumelendez/github-playground</url>
+		<connection>scm:git:git://github.com/eddumelendez/github-playground.git</connection>
+		<developerConnection>scm:git:https://github.com/eddumelendez/github-playground.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+	<developers>
+		<developer>
+			<id>eddumelendez</id>
+			<email>eddu.melendez@gmail.com</email>
+		</developer>
+	</developers>
+
 	<modules>
 		<module>s3-resources</module>
 		<module>ses-resources</module>
 	</modules>
+
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub OWNER Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/eddumelendez/github-playground</url>
+		</repository>
+	</distributionManagement>
 
 </project>
