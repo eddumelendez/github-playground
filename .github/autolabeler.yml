@@ -1,2 +1,2 @@
-s3: s3-resources
-ses: ses-resources
+s3: s3-resources/
+ses: ses-resources/
