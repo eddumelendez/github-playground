@@ -1,11 +1,11 @@
 name: Release Java CI with Maven
 
 on:
-  # Trigger the workflow on push
-  push:
-    # Sequence of patterns matched against refs/tags
-    tags:
-      - '*' # Push events to matching *, i.e. 1.0, 20.15.10
+  workflow_dispatch:
+    inputs:
+      next-version:
+        description: 'Next Development version'
+        required: true
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: master
+          ref: ${{ github.ref }}
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
         with:
@@ -33,10 +33,10 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
       - name: Prepare Release
-        run: ./mvnw release:prepare
+        run: ./mvnw release:prepare -Dtag=@{project.version} -DdevelopmentVersion=${{ github.event.inputs.next-version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish Packages to GitHub Packages
         run: ./mvnw release:perform
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
