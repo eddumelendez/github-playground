@@ -19,7 +19,8 @@ jobs:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
-      - uses: sdkman/sdkman-action@v1-preview
+      - uses: sdkman/sdkman-action@master
+        id: sdkman
         with:
           candidate: java
           version: 15.0.0-amzn
@@ -27,6 +28,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 15.0.0
-          jdkFile: ${{ github.workspace }}/.sdkman/archives/java-15.0.0-amzn.zip
+          jdkFile: ${{ github.workspace }}/.sdkman/archives/${{ steps.sdkman.outputs.file }}
       - name: Build with Maven
         run: ./mvnw -V verify
