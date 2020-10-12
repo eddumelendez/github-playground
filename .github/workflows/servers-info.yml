@@ -1,0 +1,17 @@
+name: Servers info workflow
+on: [push]
+
+jobs:
+  build:
+    name: "Running on ${{ matrix.os }}"
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ macos-latest, ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Print info
+        run: |
+          uname
+          uname -a
+          echo ::set-output name=uname::$(uname)
