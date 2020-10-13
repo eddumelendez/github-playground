@@ -1,2 +1,3 @@
+"component: s3": s3-resources/*
 s3: s3-resources/*
 ses: ses-resources/*
