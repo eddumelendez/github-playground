@@ -22,7 +22,7 @@ jobs:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
-      - uses: sdkman/sdkman-action@fix_path
+      - uses: sdkman/sdkman-action@master
         id: sdkman
         with:
           candidate: java
